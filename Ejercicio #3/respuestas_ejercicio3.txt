@@ -1,0 +1,57 @@
+lista_resultados =
+$beta_0
+[1] -1.441807
+
+$beta_1
+[1] 1.160804
+
+$SSR
+[1] 192.6877
+
+$SSE
+[1] 7.610799
+
+$SST
+[1] 200.2985
+
+$F_stat
+[1] 253.1767
+
+$p_value_F
+[1] 1.980868e-08
+
+$conclusion_anova
+[1] "Rechazar H0 (El modelo es util)"
+
+$r_pearson
+[1] 0.9808174
+
+$r_cuadrado
+[1] 0.9620027
+
+$y_pred_val
+[1] 2.040606
+
+
+==================================================
+INTERPRETACION DE RESULTADOS - EJERCICIO 3 (en R)
+==================================================
+
+a. Analisis de Varianza (ANOVA) con alpha = 0.05:
+   - Suma de Cuadrados de Regresion (SSR): 192.687692
+   - Suma de Cuadrados de Error (SSE): 7.610799
+   - Suma de Cuadrados Totales (SST): 200.298492
+   - Estadistico F observado: 253.1767
+   - p-valor asociado: 1.98087e-08
+   - Conclusion: Rechazar H0 (El modelo es util). 
+     Hay evidencia para afirmar que el modelo es util.
+
+b. Coeficiente de correlacion (r) y determinacion (r^2):
+   - r = 0.9808: Correlacion lineal positiva muy fuerte.
+   - r^2 = 0.9620: El 96.20% de variabilidad es explicada por el numero de tareas.
+
+c. Estimacion puntual para X = 3 tareas:
+   - Ecuacion de la recta: Y^ = -1.4418 + 1.1608 * X
+   - Tiempo estimado (Y^): 2.0406 unidades estandarizadas.
+==================================================
+[v] Grafica guardada en: grafica_ejercicio3.png
