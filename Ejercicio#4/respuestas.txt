@@ -1,0 +1,24 @@
+Ejercicio FCC – Resultados numéricos
+
+Datos:
+Frecuencia (MHz): 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000
+Atenuación (dBL): 11.5, 15.8, 18.2, 22.6, 26.2, 27.1, 29.5, 30.7, 31.3, 32.6, 34.9
+
+Medidas básicas:
+- Media de Y (atenuación): ≈ 25.5 dBL
+- Varianza de Y: ≈ 64.3
+- Desviación estándar de Y: ≈ 8.0
+- Correlación entre X y Y: ≈ 0.99 (muy alta)
+
+Regresión lineal:
+Ecuación ajustada: Ŷ = 8.48 + 0.026·X
+- β0 (intercepto): ≈ 8.48
+- β1 (pendiente): ≈ 0.026
+
+Interpretación:
+- β0: Atenuación estimada cuando X=0 (no tiene sentido físico directo, pero sirve en el modelo).
+- β1: Por cada MHz adicional, la atenuación aumenta en ~0.026 dBL.
+
+Predicción puntual:
+Para X = 888 MHz:
+Ŷ = 8.48 + 0.026·888 ≈ 34.09106 dBL

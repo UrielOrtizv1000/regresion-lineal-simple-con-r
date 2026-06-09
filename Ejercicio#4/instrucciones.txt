@@ -1,0 +1,61 @@
+MANUAL DE USO – Programa de regresión lineal simple
+
+1. Archivos necesarios
+   - regresion.R → contiene las funciones estadísticas (media, varianza, desviación estándar, correlación, regresión, predicción).
+   - main.R → programa principal que utiliza la librería y ejecuta el análisis.
+   - datos.csv → archivo con los datos a analizar (dos columnas: X y Y).
+
+2. Preparar el archivo CSV
+   - Debe tener dos columnas llamadas X y Y.
+   - Ejemplo:
+       X,Y
+       50,11.5
+       100,15.8
+       200,18.2
+       ...
+   - Guarda este archivo en la misma carpeta donde están regresion.R y main.R.
+
+3. Abrir RStudio
+   - Inicia RStudio en tu computadora.
+   - Abre el archivo main.R.
+
+4. Configurar el directorio de trabajo
+   - Antes de ejecutar, asegúrate de que R está en la carpeta correcta.
+   - Usa el comando:
+       setwd("C:/Users/Javi/Desktop/regresion")
+   - Verifica con:
+       getwd()
+
+5. Ejecutar el programa
+   - Corre el archivo main.R completo.
+   - El programa:
+     • Lee los datos desde datos.csv.
+     • Calcula medidas básicas de Y (media, varianza, desviación estándar).
+     • Calcula la correlación entre X y Y.
+     • Ajusta un modelo de regresión lineal simple.
+     • Muestra los coeficientes β0 y β1.
+     • Realiza una predicción puntual (ejemplo: para X = 888).
+
+6. Resultados esperados (con los datos FCC)
+   - Media Y: 25.49
+   - Varianza Y: 57.03
+   - Desviación estándar Y: 7.55
+   - Correlación X-Y: 0.9634
+   - Regresión: Ŷ = 14.17 + 0.0224·X
+   - Predicción para X = 888: 34.09 dBL
+
+7. Interpretación
+   - β0 (intercepto): valor de atenuación estimada cuando X=0 (teórico).
+   - β1 (pendiente): indica cuánto aumenta la atenuación por cada MHz adicional.
+   - El modelo sirve para estimar valores de Y en cualquier X dentro del rango de datos.
+
+8. Aplicaciones
+   - El programa puede usarse en cualquier situación con dos variables numéricas relacionadas.
+   - Ejemplos:
+     • Telecomunicaciones: frecuencia vs atenuación.
+     • Educación: horas de estudio vs calificación.
+     • Economía: precio vs demanda.
+
+9. Limitaciones
+   - El modelo es lineal: funciona bien si la relación entre variables es aproximadamente recta.
+   - Para relaciones más complejas se necesitarían extensiones (regresión múltiple o polinómica).
