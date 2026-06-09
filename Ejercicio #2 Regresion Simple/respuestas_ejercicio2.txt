@@ -1,0 +1,44 @@
+a. Diagrama de dispersión y d. Recta de mínimos cuadrados en el gráfico: Se ha creado y guardado el archivo grafica_ejercicio2.png en la carpeta del proyecto conteniendo el gráfico estilizado con la recta ajustada en color rojo.
+b. Análisis de Varianza (ANOVA) con α=0.05:
+Hipótesis: H 
+0
+​
+ :β 
+1
+​
+ =0 frente a H 
+1
+​
+ :β 
+1
+​
+ 
+
+=0.
+El p-valor = 4.9455×10 
+−6
+  es mucho menor que α=0.05, por lo que se rechaza la hipótesis nula (H 
+0
+​
+ ). El número de vehículos explica significativamente la variación en el tiempo de congestionamiento.
+c. Línea de mínimos cuadrados:  
+Y
+^
+ =−0.001048+0.003214⋅X
+e. Interpretación de los coeficientes:
+β
+^
+​
+  
+0
+​
+ =−0.001048: Es el tiempo estimado de congestionamiento cuando no hay ningún vehículo (X=0). Estadísticamente es muy cercano a 0, lo cual es congruente con la realidad física (sin vehículos no hay bloqueos).
+β
+^
+​
+  
+1
+​
+ =0.003214: Por cada vehículo adicional incorporado a la bodega, el tiempo estimado de congestionamiento se incrementa en 0.003214 minutos (es decir, 0.19 segundos adicionales).
+f. Estimación puntual para X=16 vehículos:
+El tiempo estimado de congestionamiento es de 0.050381 minutos (unos 3.02 segundos).
