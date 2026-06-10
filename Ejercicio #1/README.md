@@ -13,18 +13,23 @@ Se estudia la eficiencia de un paquete de software de consulta para acceder y ma
 
 ## Datos utilizados
 
-```r
-registros <- c(
-  350, 200, 450, 50, 400,
-  150, 350, 300, 150, 500,
-  100, 400, 200, 50, 250
-)
-
-operaciones_es <- c(
-  36, 20, 45, 5, 40,
-  18, 38, 32, 21, 54,
-  11, 43, 19, 7, 26
-)
+```csv
+X,Y
+350,36
+200,20
+450,45
+50,5
+400,40
+150,18
+350,38
+300,32
+150,21
+500,54
+100,11
+400,43
+200,19
+50,7
+250,26
 ```
 
 ## Requisitos
@@ -54,7 +59,9 @@ El script detecta la ubicacion del archivo ejecutado y crea las salidas dentro d
 
 ```text
 Ejercicio #1/
+|-- data.csv
 |-- ejercicio_1_regresion_lineal_simple.R
+|-- functions.R
 |-- README.md
 `-- salidas/
     |-- resultados/
