@@ -1,65 +1,86 @@
 # main.R
+# Script principal del Ejercicio 6.
+# Carga funciones, lee los datos desde CSV, ejecuta el analisis y muestra
+# la lista de resultados solicitada.
 
-# Cargar el archivo de funciones
-source("C:/Users/Dookie/Documents/regresion-lineal-simple-con-r/Ejercicio #6/funciones.R")
+options(digits = 6)
 
-# Opcion 1: Cargar datos desde archivo externo (Descomentar para usar)
-# Si se tiene un archivo CSV con cabeceras 'x' y 'y'
-# datos <- read.csv("datos.csv")
+obtener_directorio_script <- function() {
+  argumentos <- commandArgs(trailingOnly = FALSE)
+  argumento_archivo <- argumentos[grepl("^--file=", argumentos)]
 
-# Opcion 2: Utilizar los datos extraidos de la tabla proporcionada
-x <- c(12.2, 10.6, 15.1, 16.2, 16.6, 16.6, 17.2, 17.6, 18.2, 16.5, 17.2,
-       18.2, 15.1, 17.2, 17.5, 18.6, 18.8, 17.8, 18.0, 18.2, 18.4, 18.6,
-       19.0, 19.3, 19.5, 19.7, 18.6, 19.0, 19.2, 19.4, 19.6, 20.1, 19.2)
-
-y <- c(10, 11, 12, 12, 12, 13, 14, 14, 14, 15, 15,
-       15, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17,
-       17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 19)
-
-datos <- data.frame(x = x, y = y)
-
-# Parametros del problema
-nivel_significancia <- 0.10
-x_evaluar <- 17.5
-confianza_prediccion <- 0.95
-
-# Llamar a la funcion y almacenar los resultados en una lista
-lista_resultados <- realizar_analisis_calificaciones(
-  datos = datos,
-  alpha = nivel_significancia,
-  x_nuevo = x_evaluar,
-  nivel_confianza = confianza_prediccion
-)
-
-# Mostrar los resultados en consola
-imprimir_resultados_legibles <- function(res) {
-  cat("--- RESULTADOS DEL ANALISIS ---\n\n")
-  
-  cat("a) Ecuacion de minimos cuadrados:\n")
-  cat("   ", res$inciso_a_ecuacion, "\n\n")
-  
-  cat("b) Prueba de hipotesis T:\n")
-  cat("   Hipotesis Nula (H0):", res$inciso_b_prueba_T$hipotesis_nula, "\n")
-  cat(sprintf("   Estadistico t: %.4f\n", res$inciso_b_prueba_T$estadistico_t))
-  cat(sprintf("   Valor p: %g\n", res$inciso_b_prueba_T$p_valor))
-  cat(sprintf("   Nivel de significancia (alfa): %.2f\n", res$inciso_b_prueba_T$alfa))
-  
-  if (res$inciso_b_prueba_T$rechazar_H0) {
-    cat("   Conclusion: Se rechaza H0. Existe evidencia de una relacion lineal significativa.\n\n")
-  } else {
-    cat("   Conclusion: No se rechaza H0. No hay evidencia suficiente de relacion lineal.\n\n")
+  if (length(argumento_archivo) > 0) {
+    ruta_script <- sub("^--file=", "", argumento_archivo[1])
+    return(dirname(normalizePath(ruta_script, winslash = "/", mustWork = TRUE)))
   }
-  
-  cat("c) Estimacion puntual:\n")
-  cat(sprintf("   Calificacion estimada: %.4f\n\n", res$inciso_c_estimacion_puntual))
-  
-  cat("d) Intervalo de prediccion:\n")
-  cat(sprintf("   Nivel de confianza: %d%%\n", res$inciso_d_intervalo_prediccion$nivel_confianza * 100))
-  cat(sprintf("   Limite inferior: %.4f\n", res$inciso_d_intervalo_prediccion$limite_inferior))
-  cat(sprintf("   Limite superior: %.4f\n", res$inciso_d_intervalo_prediccion$limite_superior))
-  cat("   Interpretacion:", res$inciso_d_intervalo_prediccion$interpretacion, "\n")
+
+  normalizePath(getwd(), winslash = "/", mustWork = TRUE)
 }
 
-# Mostrar los resultados formateados en consola
-imprimir_resultados_legibles(lista_resultados)
+ejecutar_ejercicio_6 <- function() {
+  directorio_script <- obtener_directorio_script()
+  ruta_funciones <- file.path(directorio_script, "funciones.R")
+  ruta_datos <- file.path(directorio_script, "datos.csv")
 
+  if (!file.exists(ruta_funciones)) {
+    stop(sprintf("No se encontro el archivo de funciones: %s", ruta_funciones),
+         call. = FALSE)
+  }
+  if (!file.exists(ruta_datos)) {
+    stop(sprintf("No se encontro el archivo de datos: %s", ruta_datos),
+         call. = FALSE)
+  }
+
+  source(ruta_funciones, encoding = "UTF-8")
+
+  datos <- read.csv(ruta_datos)
+
+  nivel_significancia <- 0.10
+  x_evaluar <- 17.5
+  confianza_prediccion <- 0.95
+
+  # -------------------------------------------------------------------
+  # Ejercicio 6, inciso a)
+  # Calcula la ecuacion de minimos cuadrados para explicar la calificacion
+  # del profesor a partir de la calificacion AUTOMARK.
+  # -------------------------------------------------------------------
+
+  # -------------------------------------------------------------------
+  # Ejercicio 6, inciso b)
+  # Realiza la prueba de hipotesis t sobre la pendiente del modelo y
+  # produce la conclusion con alpha = 0.10.
+  # -------------------------------------------------------------------
+
+  # -------------------------------------------------------------------
+  # Ejercicio 6, inciso c)
+  # Obtiene la estimacion puntual para la calificacion del profesor cuando
+  # AUTOMARK es igual a 17.5.
+  # -------------------------------------------------------------------
+
+  # -------------------------------------------------------------------
+  # Ejercicio 6, inciso d)
+  # Calcula el intervalo de prediccion del 95% para una observacion
+  # individual cuando AUTOMARK es igual a 17.5.
+  # -------------------------------------------------------------------
+  lista_resultados <- realizar_analisis_calificaciones(
+    datos = datos,
+    alpha = nivel_significancia,
+    x_nuevo = x_evaluar,
+    nivel_confianza = confianza_prediccion
+  )
+
+  print(lista_resultados)
+  imprimir_resultados_legibles(lista_resultados)
+
+  invisible(lista_resultados)
+}
+
+tryCatch(
+  {
+    ejecutar_ejercicio_6()
+  },
+  error = function(error) {
+    message("ERROR: ", conditionMessage(error))
+    quit(status = 1)
+  }
+)
