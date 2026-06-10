@@ -71,6 +71,7 @@ ejecutar_ejercicio_6 <- function() {
 
   print(lista_resultados)
   imprimir_resultados_legibles(lista_resultados)
+  generar_grafica_regresion(lista_resultados)
 
   invisible(lista_resultados)
 }
@@ -84,3 +85,4 @@ tryCatch(
     quit(status = 1)
   }
 )
+

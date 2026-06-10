@@ -160,3 +160,22 @@ imprimir_resultados_legibles <- function(res) {
   cat(sprintf("   Limite superior: %.4f\n", res$inciso_d_intervalo_prediccion$limite_superior))
   cat("   Interpretacion:", res$inciso_d_intervalo_prediccion$interpretacion, "\n")
 }
+
+generar_grafica_regresion <- function(res) {
+  datos <- res$datos
+  modelo <- res$modelo
+  x_nuevo <- res$parametros$x_nuevo
+  estimacion <- res$inciso_c_estimacion_puntual
+  intervalo <- res$inciso_d_intervalo_prediccion
+  
+  plot(datos$x, datos$y, 
+       main = "AUTOMARK vs Profesor",
+       xlab = "Calificacion AUTOMARK (x)", 
+       ylab = "Calificacion Profesor (y)", 
+       pch = 16, col = "blue")
+  
+  abline(modelo, col = "red", lwd = 2)
+  
+  points(x_nuevo, estimacion, col = "darkgreen", pch = 17, cex = 1.5)
+  grid()
+}
